@@ -9,6 +9,8 @@
 //
 // export { handler as GET, handler as POST }
 
-export function GET (){
+import {NextRequest, NextResponse} from "next/server";
 
+export async function GET (request:NextRequest){
+  return NextResponse.json("hello")
 }
