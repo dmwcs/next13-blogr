@@ -1,9 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
-
-
+import AuthProvider from "@/components/AuthProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,12 +15,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body >
-      <div className="py-[32px] border bg-gray-100 h-screen">
-        <Navbar></Navbar>
-        {children}
-      </div>
-
+      <body>
+        <AuthProvider>
+          <div className="py-[32px] border bg-gray-100 h-screen">
+            <Navbar></Navbar>
+            {children}
+          </div>
+        </AuthProvider>
       </body>
     </html>
   );

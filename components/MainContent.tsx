@@ -1,12 +1,12 @@
 import PostList from "@/components/PostList";
-import PostEdit from "@/components/PostEdit";
-import {post} from "@/types/tpyes";
+import PostAdd from "@/components/PostAdd";
+import {Post as TypePost} from "@/types/tpyes";
 
 
 interface MainContentProps{
   title:string
-  type: "read" | "edit"
-  posts: post[]
+  type: "read" | "add"
+  posts?: TypePost[]
 }
 
 function MainContent({title, type, posts}:MainContentProps) {
@@ -15,7 +15,7 @@ function MainContent({title, type, posts}:MainContentProps) {
       <h1 className="text-[2em] font-extrabold my-5">{title}</h1>
       {
         type === "read" ?  <PostList posts={posts}></PostList>
-          : <PostEdit></PostEdit>
+          : <PostAdd></PostAdd>
       }
     </div>
   );

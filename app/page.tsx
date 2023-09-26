@@ -1,12 +1,26 @@
-import Image from 'next/image'
-import Post from "@/components/Post";
-import PostList from "@/components/PostList";
 import MainContent from "@/components/MainContent";
-import {post} from "@/types/tpyes";
+import {Post as TypePost} from "@/types/tpyes";
+import prisma from "@/prisma/client";
 
-export default function FeedPage() {
-  const posts:post[] = [{title:"title1",postContent:"content1"},{title:"title2",postContent:"content2"}]
-  return (
-    <MainContent title="Public Feed" type="read" posts={posts}></MainContent>
-  )
+
+
+
+export default async function FeedPage() {
+
+  try {
+    const res = await fetch("http://localhost:3000/api/publish",{cache:"no-cache"})
+    if(!res.ok){
+      throw new Error("something wrong!")
+    }
+    const publishedPosts = await res.json();
+    return (
+      // <div></div>
+      <MainContent title="Public Feed" type="read" posts={publishedPosts}></MainContent>
+    )
+  }catch (e){
+    console.log(e)
+  }
+
+
+
 }

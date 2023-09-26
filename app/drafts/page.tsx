@@ -1,10 +1,19 @@
 import MainContent from "@/components/MainContent";
-import {post} from "@/types/tpyes";
 
-function DraftPage() {
-const posts:post[] = [{title:"title1",postContent:"content1"},{title:"title2",postContent:"content2"}]
+async function DraftPage() {
+
+  const res = await fetch("http://localhost:3000/api/post");
+  if(!res.ok) {
+    throw new Error("something wrong!")
+  }
+  const posts = await res.json();
+  console.log(posts)
+
   return (
-    <MainContent title="My Drafts" type="read" posts={posts}></MainContent>
+    <div>
+      <MainContent title="My Drafts" type="read" posts={posts}></MainContent>
+    </div>
+
   );
 }
 

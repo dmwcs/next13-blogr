@@ -1,11 +1,14 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import {useRouter} from "next/navigation";
 
 function Navbar() {
   const [logIn, setIfLogin] = useState(false);
+  const router = useRouter();
 
   const onButtonClick = () => {
+    router.push("http://localhost:3000/api/auth/signin")
     setIfLogin(!logIn);
   };
 
