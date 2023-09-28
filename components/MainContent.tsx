@@ -1,21 +1,27 @@
 import PostList from "@/components/PostList";
 import PostAdd from "@/components/PostAdd";
-import {Post as TypePost} from "@/types/tpyes";
+import { Post as TypePost } from "@/types/tpyes";
+import { getServerSession } from "next-auth";
+import { OPTIONS } from "@/app/api/auth/[...nextauth]/route";
 
-
-interface MainContentProps{
-  title:string
-  type: "read" | "add"
-  posts?: TypePost[]
+interface MainContentProps {
+  title: string;
+  type: "read" | "add";
+  posts?: TypePost[];
 }
 
-function MainContent({title, type, posts}:MainContentProps) {
+async function MainContent({ title, type, posts }: MainContentProps) {
+  const session = await getServerSession(OPTIONS);
+
   return (
     <div className="px-7">
       <h1 className="text-[2em] font-extrabold my-5">{title}</h1>
       {
-        type === "read" ?  <PostList posts={posts}></PostList>
-          : <PostAdd></PostAdd>
+        session
+        ? type === "read"
+        && <PostList posts={posts}></PostList>
+        || <PostAdd></PostAdd>
+        : <p>You need to be authenticated to view this page.</p>
       }
     </div>
   );

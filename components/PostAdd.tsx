@@ -10,14 +10,15 @@ function PostAdd() {
   const onFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const res = await fetch(`http://localhost:3000/api/post`, {
+      const res = await fetch(`/api/post`, {
         method: "POST",
         body: JSON.stringify({ title, content }),
       });
       if (!res.ok) {
         throw new Error("some thing wrong!");
       }
-      router.push("/");
+      router.push("/drafts");
+      router.refresh();
     } catch (e) {
       console.log(e);
     }

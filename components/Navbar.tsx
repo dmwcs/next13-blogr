@@ -1,38 +1,36 @@
-"use client";
+"use client"
 import Link from "next/link";
-import { useState } from "react";
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
+import { useSession, signOut, signIn } from "next-auth/react";
 
 function Navbar() {
-  const [logIn, setIfLogin] = useState(false);
   const router = useRouter();
 
-  const onButtonClick = () => {
-    router.push("http://localhost:3000/api/auth/signin")
-    setIfLogin(!logIn);
-  };
+  const { data: session, status } = useSession();
+
 
   return (
     <div className="flex justify-between p-7">
+      {/*left*/}
       <div className="flex gap-5">
         <Link href="/" className="font-bold">
           Feed
         </Link>
-        {logIn && <Link href="/drafts">My drafts</Link>}
+        {session && <Link href="/drafts">My drafts</Link>}
       </div>
 
-      {logIn ? (
+      {/*right*/}
+      {session ? (
         <div className="flex gap-10">
-          <p>User name and email</p>
+          <p>
+            {session.user?.name} ({session.user?.email})
+          </p>
+
           <Link href="/create">New post</Link>
-          {
-            /*<Link href="/">Log out</Link>*/
-            <button onClick={onButtonClick}>Log Out</button>
-          }
+          {<button onClick={() => signOut()}>Log Out</button>}
         </div>
       ) : (
-        <button onClick={onButtonClick}>Log in</button>
-        // <Link href="/">Log in</Link>
+        <button onClick={() => signIn()}>Log in</button>
       )}
     </div>
   );

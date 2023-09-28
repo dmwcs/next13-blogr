@@ -10,7 +10,7 @@ function PostList({posts}:PostListProps) {
       {
         posts?.map(post =>{
           const {id,title,content,author} = post;
-          return <Post key={id} title={title} content={content} author={author}></Post>
+          return <Post key={id} title={title} content={content} author={author} id={id}></Post>
         } )
       }
     </div>
