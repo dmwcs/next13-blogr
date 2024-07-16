@@ -15,9 +15,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className="bg-gray-100">
         <AuthProvider>
-          <div className="py-[32px] border bg-gray-100 h-screen">
+          <div className="py-[32px] h-screen mx-auto max-w-[1080px] border-2">
             <Navbar></Navbar>
             {children}
           </div>

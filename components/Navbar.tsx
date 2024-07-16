@@ -1,22 +1,28 @@
-"use client"
+"use client";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useSession, signOut, signIn } from "next-auth/react";
 
 function Navbar() {
-  const router = useRouter();
+  const pathname = usePathname();
 
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
 
+  const isFeed = pathname === "/";
+  const isDrafts = pathname.endsWith("/drafts");
 
   return (
-    <div className="flex justify-between p-7">
+    <div className="flex justify-between p-7 bg-gray-500 rounded">
       {/*left*/}
       <div className="flex gap-5">
-        <Link href="/" className="font-bold">
+        <Link href="/" className={isFeed ? "font-bold" : ""}>
           Feed
         </Link>
-        {session && <Link href="/drafts">My drafts</Link>}
+        {session && (
+          <Link href="/drafts" className={isDrafts ? "font-bold" : ""}>
+            My drafts
+          </Link>
+        )}
       </div>
 
       {/*right*/}
