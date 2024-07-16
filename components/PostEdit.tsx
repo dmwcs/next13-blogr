@@ -40,6 +40,7 @@ function PostEdit({ id }: { id: string }) {
     }
 
   };
+  //加一个 如果post的publish属性是ture， 那么显示unpublish button，如果是false 显示publish button
 
 
 

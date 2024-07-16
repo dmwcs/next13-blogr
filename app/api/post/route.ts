@@ -9,6 +9,9 @@ import {getServerSession} from "next-auth";
 //get all draft post
 export async function GET (request: NextRequest) {
   const publishedPosts = await prisma.post.findMany({
+    where: {
+      published: false,
+    },
     include: {
       author: {
         select: { name: true },
