@@ -7,7 +7,7 @@ interface PostListProps {
 function PostList({ posts }: PostListProps) {
   return (
     <div className="flex flex-col gap-8 p-2 mt-5">
-      {posts?.length === 0 && <div>You don't have any post yet.</div>}
+      {posts?.length === 0 && <div>You don`&apos;t have any post yet.</div>}
       {posts?.map((post) => {
         const { id, title, content, author } = post;
         return (
