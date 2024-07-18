@@ -11,14 +11,12 @@ async function getData() {
     return res.json();
   } catch (error) {
     console.error(error);
-    // 返回默认数据或缓存数据
     return { message: "Default data" };
   }
 }
 
 const DraftPage = async () => {
   const posts = await getData();
-  console.log(posts);
 
   return (
     <div>
