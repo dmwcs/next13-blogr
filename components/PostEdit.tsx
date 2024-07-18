@@ -112,7 +112,7 @@ function PostEdit({ id }: { id: string }) {
       <div className="flex gap-5">
         {post.published === true ? (
           <button
-            className="bg-white border py-3 px-5 rounded w-[95px]"
+            className="bg-white border py-3 px-5 rounded w-[105px]"
             onClick={onToDraftClick}
             disabled={isSubmitting}
           >
@@ -120,7 +120,7 @@ function PostEdit({ id }: { id: string }) {
           </button>
         ) : (
           <button
-            className="bg-white border py-3 px-5 rounded w-[95px]"
+            className="bg-white border py-3 px-5 rounded w-[105px]"
             onClick={onPublishClick}
             disabled={isSubmitting}
           >
@@ -129,7 +129,7 @@ function PostEdit({ id }: { id: string }) {
         )}
 
         <button
-          className="text-white bg-red-600 py-3 px-5 rounded w-[95px]"
+          className="text-white bg-red-600 py-3 px-5 rounded w-[105px]"
           onClick={onDeleteClick}
           disabled={isSubmitting}
         >

@@ -14,15 +14,15 @@ async function MainContent({ title, type, posts }: MainContentProps) {
   const session = await getServerSession(OPTIONS);
 
   return (
-    <div className="px-7">
+    <div className="px-7 border-2 pb-8">
       <h1 className="text-[2em] font-extrabold my-5">{title}</h1>
-      {
-        session
-        ? type === "read"
-        && <PostList posts={posts}></PostList>
-        || <PostAdd></PostAdd>
-        : <p>You need to be authenticated to view this page.</p>
-      }
+      {session ? (
+        (type === "read" && <PostList posts={posts}></PostList>) || (
+          <PostAdd></PostAdd>
+        )
+      ) : (
+        <p>Please log in to view posts left by others.</p>
+      )}
     </div>
   );
 }

@@ -17,9 +17,12 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-gray-100">
         <AuthProvider>
-          <div className="py-[32px] h-screen mx-auto max-w-[1080px] border-2">
+          <div className="py-[32px] h-screen mx-auto max-w-[1080px]">
             <Navbar></Navbar>
             {children}
+            <footer className="fixed bottom-0 left-0 w-full flex justify-center text-black bg-gray-300">
+              Built by Shelton Cui
+            </footer>
           </div>
         </AuthProvider>
       </body>
