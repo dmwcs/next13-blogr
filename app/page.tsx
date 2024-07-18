@@ -4,10 +4,13 @@ import prisma from "@/prisma/client";
 
 export default async function FeedPage() {
   try {
-    const res = await fetch("http://localhost:3000/api/publish", {
-      cache: "no-cache",
-      method: "GET",
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASIC_URL}/api/publish`,
+      {
+        cache: "no-cache",
+        method: "GET",
+      },
+    );
     if (!res.ok) {
       throw new Error("something wrong!");
     }

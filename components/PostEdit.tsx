@@ -4,9 +4,12 @@ import { useRouter } from "next/navigation";
 import { Post } from "@/types/tpyes";
 
 const getData = async (id: string): Promise<Post> => {
-  const res = await fetch(`http://localhost:3000/api/post/${id}`, {
-    cache: "no-cache",
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASIC_URL}/api/post/${id}`,
+    {
+      cache: "no-cache",
+    },
+  );
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
@@ -38,9 +41,12 @@ function PostEdit({ id }: { id: string }) {
   const onDeleteClick = async () => {
     setIsSubmitting(true);
     try {
-      const res = await fetch(`http://localhost:3000/api/post/${id}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASIC_URL}/api/post/${id}`,
+        {
+          method: "DELETE",
+        },
+      );
       if (!res.ok) throw new Error("Failed to delete post");
       router.push("/");
       router.refresh();
@@ -57,7 +63,7 @@ function PostEdit({ id }: { id: string }) {
     setIsSubmitting(true);
     try {
       const res = await fetch(
-        `http://localhost:3000/api/publish/${id}?publish=false`,
+        `${process.env.NEXT_PUBLIC_BASIC_URL}/api/publish/${id}?publish=false`,
         {
           cache: "no-cache",
         },
@@ -78,7 +84,7 @@ function PostEdit({ id }: { id: string }) {
     setIsSubmitting(true);
     try {
       const res = await fetch(
-        `http://localhost:3000/api/publish/${id}?publish=true`,
+        `${process.env.NEXT_PUBLIC_BASIC_URL}/api/publish/${id}?publish=true`,
         {
           cache: "no-cache",
         },
