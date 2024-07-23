@@ -37,3 +37,7 @@ next-env.d.ts
 .idea
 
 .vercel
+
+.dockerignore
+Dockerfile
+docker-compose.yml
